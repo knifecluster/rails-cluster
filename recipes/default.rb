@@ -32,6 +32,10 @@ ruby_block "Get gem path" do
   action :create
 end
   
+user 'rails' do
+  home '/home/rails'
+  action :create
+end
 
 # Install packages necessary for passenger
 %w(libsqlite3-dev libcurl4-openssl-dev apache2-threaded-dev libapr1-dev libaprutil1-dev).each do |package|
@@ -68,8 +72,8 @@ end
 # Deploy application
 application 'rails-example' do
   path '/var/www/rails-apps/rails-example'
-  owner 'vagrant'
-  group 'vagrant'
+  owner 'rails'
+  group 'rails'
   repository 'https://github.com/rackops/rails-stack.git'
   revision 'HEAD'
   environment_name 'development'
@@ -78,8 +82,8 @@ end
 # Use bundler to install application gems on the site
 execute '/opt/rbenv/shims/bundle install --deployment' do
   cwd '/var/www/rails-apps/rails-example/current'
-  user 'vagrant'
-  not_if 'bundle check', :user => 'vagrant', :cwd => '/var/www/rails-apps/rails-example/current'
+  user 'rails'
+  not_if 'bundle check', :user => 'rails', :cwd => '/var/www/rails-apps/rails-example/current'
 end
 
 # Insert the vhost.conf template
