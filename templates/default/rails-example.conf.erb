@@ -1,6 +1,6 @@
-LoadModule passenger_module <%= node['gem_path'] %>/gems/passenger-4.0.42/buildout/apache2/mod_passenger.so
+LoadModule passenger_module <%= node['gem_path'] %>/gems/passenger-4.0.44/buildout/apache2/mod_passenger.so
 <IfModule mod_passenger.c>
-  PassengerRoot <%= node['gem_path'] %>/gems/passenger-4.0.42
+  PassengerRoot <%= node['gem_path'] %>/gems/passenger-4.0.44
   PassengerDefaultRuby /opt/rbenv/shims/ruby
 </IfModule>
 
