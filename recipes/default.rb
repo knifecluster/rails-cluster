@@ -66,7 +66,7 @@ end
 
 execute "build mod_passenger.so" do
   command "/opt/rbenv/bin/rbenv rehash; /opt/rbenv/shims/passenger-install-apache2-module --auto"
-  not_if { ::File.exists?("#{node['gem_path']}/gems/passenger-4.0.42/buildout/apache2/mod_passenger.so")}
+  not_if { ::File.exists?("#{node['gem_path']}/gems/passenger-4.0.44/buildout/apache2/mod_passenger.so")}
 end
 
 # Deploy application
